@@ -24,4 +24,12 @@ defmodule Aoc2021Test do
   test "day 3 part 2" do
     assert Day3.part2() == 4_245_351
   end
+
+  test "day 4 part 1" do
+    assert Day4.part1() == 14093
+  end
+
+  test "day 4 part 2" do
+    assert Day4.part2() == 17388
+  end
 end
