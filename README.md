@@ -1,21 +1,17 @@
 # Aoc2021
 
-**TODO: Add description**
+Solutions to Advent of Code 2021 in Elixir
 
-## Installation
+## Solves
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `aoc2021` to your list of dependencies in `mix.exs`:
+- [X] [Day1 part 1](./lib/day1.ex)
+- [X] [Day1 part 2](./lib/day1.ex)
 
-```elixir
-def deps do
-  [
-    {:aoc2021, "~> 0.1.0"}
-  ]
-end
-```
+- [X] [Day2 part 1](./lib/day2.ex)
+- [X] [Day2 part 2](./lib/day2.ex)
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/aoc2021>.
+- [X] [Day3 part 1](./lib/day3.ex)
+- [X] [Day3 part 2](./lib/day3.ex)
 
+- [X] [Day4 part 1](./lib/day4.ex)
+- [X] [Day4 part 2](./lib/day4.ex)
