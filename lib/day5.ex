@@ -79,4 +79,62 @@ defmodule Day5 do
       acc + row_count
     end)
   end
+
+  def part2 do
+    vectors = make_vectors()
+
+    %{:x => max_x, :y => max_y} = find_max_values(vectors)
+
+    starting_board =
+      0..max_y
+      |> Enum.map(fn _ -> 0 end)
+      |> Enum.map(fn _ -> 0..max_x |> Enum.map(fn _ -> 0 end) end)
+
+    end_board =
+      Enum.reduce(vectors, starting_board, fn vector, acc ->
+        new_board =
+          cond do
+            vector.head.x == vector.tail.x ->
+              vector.head.y..vector.tail.y
+              |> Enum.reduce(acc, fn point_y, acc ->
+                row = Enum.fetch!(acc, point_y)
+                cell_val = Enum.fetch!(row, vector.head.x)
+                List.replace_at(acc, point_y, List.replace_at(row, vector.head.x, cell_val + 1))
+              end)
+
+            vector.head.y == vector.tail.y ->
+              vector.head.x..vector.tail.x
+              |> Enum.reduce(acc, fn point_x, acc ->
+                row = Enum.fetch!(acc, vector.head.y)
+                cell_val = Enum.fetch!(row, point_x)
+                List.replace_at(acc, vector.head.y, List.replace_at(row, point_x, cell_val + 1))
+              end)
+
+            abs(vector.tail.y - vector.head.y) == abs(vector.tail.x - vector.head.x) ->
+              Enum.zip(vector.head.x..vector.tail.x, vector.head.y..vector.tail.y)
+              |> Enum.reduce(acc, fn {point_x, point_y}, acc ->
+                row = Enum.fetch!(acc, point_y)
+                cell_val = Enum.fetch!(row, point_x)
+                List.replace_at(acc, point_y, List.replace_at(row, point_x, cell_val + 1))
+              end)
+
+            true ->
+              acc
+          end
+
+        new_board
+      end)
+
+    Enum.reduce(end_board, 0, fn row, acc ->
+      row_count =
+        Enum.reduce(row, 0, fn cell, acc ->
+          cond do
+            cell > 1 -> acc + 1
+            true -> acc
+          end
+        end)
+
+      acc + row_count
+    end)
+  end
 end
