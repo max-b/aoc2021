@@ -15,3 +15,12 @@ Solutions to Advent of Code 2021 in Elixir
 
 - [X] [Day4 part 1](./lib/day4.ex)
 - [X] [Day4 part 2](./lib/day4.ex)
+
+- [X] [Day5 part 1](./lib/day5.ex)
+- [X] [Day5 part 2](./lib/day5.ex)
+
+- [X] [Day6 part 1](./lib/day6.ex)
+- [X] [Day6 part 2](./lib/day6.ex)
+
+- [X] [Day7 part 1](./lib/day7.ex)
+- [X] [Day7 part 2](./lib/day7.ex)
