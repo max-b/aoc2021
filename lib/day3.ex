@@ -54,7 +54,7 @@ defmodule Day3 do
 
   def oxygen_rating(values, digit_index) do
     digits_sum = sum_digits(values)
-    index_sum = elem(List.pop_at(digits_sum, digit_index), 0)
+    {index_sum, _} = List.pop_at(digits_sum, digit_index)
 
     cond do
       index_sum >= 0 ->
@@ -81,7 +81,7 @@ defmodule Day3 do
 
   def co2_rating(values, digit_index) do
     digits_sum = sum_digits(values)
-    index_sum = elem(List.pop_at(digits_sum, digit_index), 0)
+    {index_sum, _} = List.pop_at(digits_sum, digit_index)
 
     cond do
       index_sum >= 0 ->

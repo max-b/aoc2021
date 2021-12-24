@@ -6,7 +6,7 @@ defmodule Day1 do
     numbered =
       Stream.map(replaced, fn x -> Integer.parse(x) end)
       |> Stream.filter(fn x -> tuple_size(x) == 2 end)
-      |> Stream.map(fn x -> elem(x, 0) end)
+      |> Stream.map(fn {first, _} -> first end)
 
     numbered
   end
@@ -17,7 +17,9 @@ defmodule Day1 do
 
     count =
       Enum.reduce(zipped, 0, fn x, acc ->
-        if elem(x, 1) > elem(x, 0) do
+        {first, second} = x
+
+        if second > first do
           acc + 1
         else
           acc
@@ -33,7 +35,7 @@ defmodule Day1 do
     triplets =
       Stream.zip(numbered, Stream.drop(numbered, 1))
       |> Stream.zip(Stream.drop(numbered, 2))
-      |> Stream.map(fn x -> [elem(elem(x, 0), 0), elem(elem(x, 0), 1), elem(x, 1)] end)
+      |> Stream.map(fn {{x, y}, z} -> [x, y, z] end)
 
     triplets_summed = Stream.map(triplets, fn [x, y, z] -> x + y + z end)
 
@@ -41,7 +43,9 @@ defmodule Day1 do
 
     count =
       Enum.reduce(zipped, 0, fn x, acc ->
-        if elem(x, 1) > elem(x, 0) do
+        {first, second} = x
+
+        if second > first do
           acc + 1
         else
           acc

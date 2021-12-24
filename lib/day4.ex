@@ -51,7 +51,7 @@ defmodule Day4 do
         |> Enum.map(fn row ->
           String.split(row, " ")
           |> Enum.map(fn cell ->
-            cell_value = elem(Integer.parse(cell), 0)
+            {cell_value, _} = Integer.parse(cell)
             %{:number => cell_value, :called => false}
           end)
         end)

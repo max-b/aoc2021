@@ -16,7 +16,7 @@ defmodule Day2 do
         fn command, acc ->
           [direction, magnitude_string] = command
           [{:forward, forward}, {:depth, depth}] = acc
-          magnitude = elem(Integer.parse(magnitude_string), 0)
+          {magnitude, _} = Integer.parse(magnitude_string)
 
           newpos =
             case direction do
@@ -42,7 +42,7 @@ defmodule Day2 do
         fn command, acc ->
           [direction, magnitude_string] = command
           [{:forward, forward}, {:depth, depth}, {:aim, aim}] = acc
-          magnitude = elem(Integer.parse(magnitude_string), 0)
+          {magnitude, _} = Integer.parse(magnitude_string)
 
           newpos =
             case direction do
