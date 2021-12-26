@@ -37,8 +37,8 @@ defmodule Day10 do
     end
   end
 
-  def validate_command(_valid, []) do
-    {true, 0}
+  def validate_command(valid, []) do
+    {true, valid}
   end
 
   def part1 do
@@ -52,5 +52,39 @@ defmodule Day10 do
         acc + values[value]
       end
     end)
+  end
+
+  @close_map %{"(" => ")", "{" => "}", "[" => "]", "<" => ">"}
+
+  def finish_command(finish_list, [head | tail]) do
+    finish_command([@close_map[head] | finish_list], tail)
+  end
+
+  def finish_command(finish_list, []) do
+    # We need to reverse this because we've been using head | tail and not pushing to the end
+    Enum.reverse(finish_list)
+  end
+
+  def part2 do
+    values = %{")" => 1, "]" => 2, "}" => 3, ">" => 4}
+
+    results =
+      Enum.map(get_commands(), &validate_command([], &1))
+      |> Enum.filter(fn {result, _} -> result end)
+      |> Enum.map(fn {_result, valid} -> valid end)
+
+    finish_lists = Enum.map(results, &finish_command([], &1))
+
+    scores =
+      Enum.map(finish_lists, fn finish_list ->
+        Enum.reduce(finish_list, 0, fn letter, acc ->
+          acc * 5 + values[letter]
+        end)
+      end)
+
+    sorted = Enum.sort(scores)
+    middle_num = Enum.fetch!(sorted, Integer.floor_div(length(sorted), 2))
+
+    middle_num
   end
 end

@@ -32,3 +32,4 @@ Solutions to Advent of Code 2021 in Elixir
 - [X] [Day9 part 2](./lib/day9.ex)
 
 - [X] [Day10 part 1](./lib/day10.ex)
+- [X] [Day10 part 2](./lib/day10.ex)

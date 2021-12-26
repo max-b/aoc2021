@@ -76,4 +76,8 @@ defmodule Aoc2021Test do
   test "day 10 part 1" do
     assert Day10.par1() == 415_953
   end
+
+  test "day 10 part 2" do
+    assert Day10.par2() == 2_292_863_731
+  end
 end
