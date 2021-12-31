@@ -136,8 +136,6 @@ defmodule Day11 do
         end)
 
       {new_flash_count, new_results} = simulate_day(flash_count, {0, 0}, incremented_results)
-      # IO.inspect(%{:new_flash_count => new_flash_count})
-      # print_grid(new_results)
       simulate(new_flash_count, new_results, day + 1)
     end
   end
@@ -146,5 +144,31 @@ defmodule Day11 do
     grid = get_grid()
     {flashes, _} = simulate(0, grid, 0)
     flashes
+  end
+
+  def flashing_simultaneously(results) do
+    Enum.all?(results, fn {_point, {value, _can_flash}} ->
+      value == 0
+    end)
+  end
+
+  def simulate_part_2(flash_count, results, day) do
+    if flashing_simultaneously(results) do
+      {day, flash_count, results}
+    else
+      incremented_results =
+        Enum.reduce(results, %{}, fn {point, {value, _can_flash}}, acc ->
+          Map.merge(acc, %{point => {value + 1, true}})
+        end)
+
+      {new_flash_count, new_results} = simulate_day(flash_count, {0, 0}, incremented_results)
+      simulate_part_2(new_flash_count, new_results, day + 1)
+    end
+  end
+
+  def part2 do
+    grid = get_grid()
+    {day, _, _} = simulate_part_2(0, grid, 0)
+    day
   end
 end
